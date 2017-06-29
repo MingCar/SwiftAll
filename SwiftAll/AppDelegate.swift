@@ -19,9 +19,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
       
         
-        let  root = MZRootViewController()
-        self.window?.makeKeyAndVisible()
-        self.window?.rootViewController = root;
+        window = UIWindow(frame: UIScreen.main.bounds);
+        window!.makeKeyAndVisible()
+        let vc : MZRootViewController = MZRootViewController()
+        
+        let nv :UINavigationController = UINavigationController(rootViewController: vc)
+        window?.rootViewController = nv;
+        
+        
+        
         
         return true
     }
