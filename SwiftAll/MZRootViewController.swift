@@ -25,9 +25,11 @@ class MZRootViewController: UIViewController,UITableViewDelegate,UITableViewData
         button.addTarget(self, action: #selector(self.clickAction), for: .touchDown)
         self.view.addSubview(button)
         
+        self.vcList = NSMutableArray.init(capacity: 5);
         
+        self.vcList.add("MZBaseTypeController")
         self.vcList.add("MZFontViewController")
-        
+//        self.vcList.add("MZFontViewController")
         
         demoList = UITableView(frame: CGRect(x: 0, y: 64, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height))
         demoList.delegate = self
@@ -50,21 +52,27 @@ class MZRootViewController: UIViewController,UITableViewDelegate,UITableViewData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell")!
-        cell.textLabel?.text  = "My name is UITableViewCell"
+        let x  = self.vcList[indexPath.row];
+        cell.textLabel?.text  = "My name is " + "\(x)";
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let next = UIViewController( )
-        next.title = "love day";
-        if indexPath.row % 2 == 1 {
+        
+        
+        var  next : UIViewController = UIViewController.init();
+        if indexPath.row  == 0 {
+            next = MZBaseTypeController();
+            next.title = "基础数据类型";
             next.view.backgroundColor = UIColor.purple
         }
         
-        if indexPath.row % 2 == 0 {
+        if indexPath.row  == 1 {
+            next = MZFontViewController( );
             next.view.backgroundColor = UIColor.blue
         }
+
         self.navigationController?.pushViewController(next, animated: true)
         
         
