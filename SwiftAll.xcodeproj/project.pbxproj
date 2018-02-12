@@ -15,6 +15,7 @@
 		3AE3640E1ECAD46A00559E35 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AE3640C1ECAD46A00559E35 /* Main.storyboard */; };
 		3AE364101ECAD46A00559E35 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AE3640F1ECAD46A00559E35 /* Assets.xcassets */; };
 		3AE364131ECAD46A00559E35 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AE364111ECAD46A00559E35 /* LaunchScreen.storyboard */; };
+		3E7D9B0E2030786B00CAFD2A /* MZUIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7D9B0D2030786B00CAFD2A /* MZUIController.swift */; };
 		46485E742028391200833499 /* MZBaseTypeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46485E732028391200833499 /* MZBaseTypeController.swift */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +31,7 @@
 		3AE3640F1ECAD46A00559E35 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3AE364121ECAD46A00559E35 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3AE364141ECAD46A00559E35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3E7D9B0D2030786B00CAFD2A /* MZUIController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MZUIController.swift; sourceTree = "<group>"; };
 		46485E732028391200833499 /* MZBaseTypeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MZBaseTypeController.swift; sourceTree = "<group>"; };
 		D8AC9B42BFC8FDD928D61AC4 /* Pods_SwiftAll.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftAll.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -72,6 +74,7 @@
 				3A71A3111F01195E00B9BE4F /* MZBaseViewController.swift */,
 				46485E732028391200833499 /* MZBaseTypeController.swift */,
 				3A71A3131F0119DC00B9BE4F /* MZFontViewController.swift */,
+				3E7D9B0D2030786B00CAFD2A /* MZUIController.swift */,
 				3AE3640C1ECAD46A00559E35 /* Main.storyboard */,
 				3AE3640F1ECAD46A00559E35 /* Assets.xcassets */,
 				3AE364111ECAD46A00559E35 /* LaunchScreen.storyboard */,
@@ -231,6 +234,7 @@
 				3AE364091ECAD46A00559E35 /* AppDelegate.swift in Sources */,
 				3A71A3141F0119DC00B9BE4F /* MZFontViewController.swift in Sources */,
 				3A71A3121F01195E00B9BE4F /* MZBaseViewController.swift in Sources */,
+				3E7D9B0E2030786B00CAFD2A /* MZUIController.swift in Sources */,
 				46485E742028391200833499 /* MZBaseTypeController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

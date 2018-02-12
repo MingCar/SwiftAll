@@ -29,6 +29,7 @@ class MZRootViewController: UIViewController,UITableViewDelegate,UITableViewData
         
         self.vcList.add("MZBaseTypeController")
         self.vcList.add("MZFontViewController")
+        self.vcList.add("MZUIController")
 //        self.vcList.add("MZFontViewController")
         
         demoList = UITableView(frame: CGRect(x: 0, y: 64, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height))
@@ -70,6 +71,11 @@ class MZRootViewController: UIViewController,UITableViewDelegate,UITableViewData
         
         if indexPath.row  == 1 {
             next = MZFontViewController( );
+            next.view.backgroundColor = UIColor.blue
+        }
+        
+        if indexPath.row  == 1 {
+            next = MZUIController( );
             next.view.backgroundColor = UIColor.blue
         }
 
