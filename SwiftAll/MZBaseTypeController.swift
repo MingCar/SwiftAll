@@ -13,7 +13,10 @@ import UIKit
 
 class MZBaseTypeController: MZBaseViewController {
     
- 
+    let  host = "http://192.2.3.10:8013";
+
+   
+    
     override func viewDidLoad() {
         
         
@@ -23,12 +26,116 @@ class MZBaseTypeController: MZBaseViewController {
 //        self.studyOptionalType();
 //        self.studyAdd();
 //        self.studyLiuCheng();
-//        self.studyString();  替换哪个方法????????????
+//        self.studyString();
 //        self.studyArray();
-        self.studyDictionary();
+//        self.studyDictionary();
+//        self.studyFunc();
+        self.studyClosures();
+        
+        
+    }
+    
+    
+    func studyClosures () {
+        
+        // 定义闭包
+        let studname = {print("swift closures")};
+        // 执行闭包
+        studname();
+        
+        
+        // 定义带参数 带返回值的 的闭包  并执行
+        let clickCellCommentIcon = {(conent:String,model:String) -> Bool in
+            print("content: \(conent) model:\(model)");
+            return true;
+        };
+        let returnKey =  clickCellCommentIcon("I think It is evry good","info : comment,iphone");
+        if returnKey {
+            print(returnKey);
+        }
         
         
         
+    }
+    
+    
+    func studyFunc() {
+        
+        let fullUrl = self.dealUrl(urlStr: "/commentList");
+        print("\(fullUrl)");
+        
+        // 返回元组
+        var result =  self.getCommentList(url: fullUrl);
+        if result!.success {
+            print(result?.result["resultDic"] ?? "加载失败");
+        }else{
+            print("加载失败");
+        }
+        
+        // 可变参数
+        self.vars(number: "1","2","3");
+        self.vars(number: 1,2,33,45);
+        
+        //使用函数类型
+       //  在 Swift 中，使用函数类型就像使用其他类型一样。例如，你可以定义一个类型为函数的常量或变量，并将适当的函数赋值给它：
+        let addtion : (Int ,Int ) ->Int = sumVars(numb:numc:);
+        print("the var type is function ,how amazing ,right ? let me show you that \(addtion(40,90))");
+        
+        //函数类型作为参数类型、函数类型作为返回类型
+        
+    
+        func sum(a: Int, b: Int) -> Int {
+            return a + b
+        }
+        var additionType: (Int, Int) -> Int = sum
+        print("输出结果: \(additionType(40, 89))")
+        
+        func another   (addtion:  (Int, Int) -> Int, a :Int ,b:Int) ->Int{
+            print("\(addtion(a,b))");
+            return addtion(a,b);
+        }
+        
+        
+        let  x =   another(addtion :sum(a:b:), a: 10,b: 20);
+        print("x = \(x)");
+        
+        
+        
+    }
+    
+    func sumVars(numb :Int, numc :Int) -> Int {
+        
+        return numb + numc;
+    }
+    
+    func vars<N>(number :N...)  {
+        
+        for item in number {
+            print("item = \(item)");
+        }
+    }
+    
+    func getCommentList (url : String) -> ( success :Bool, result : Dictionary<String, NSArray>)? {
+        
+        let resultArr = Array<String>(arrayLiteral: "20","30");
+        let dic = ["resultDic": resultArr];
+        
+        var  res : Bool = false;
+        
+        let x = arc4random() % 100;
+        if (x%2 == 1) {
+            res = true;
+        }
+        return (res  , dic as Dictionary<String, NSArray>);
+    }
+    
+    
+    func dealUrl(urlStr : String) -> String {
+        
+        if urlStr.isEmpty {
+            return "";
+        }
+        return host.appendingFormat(urlStr, 0);
     }
     
     func studyDictionary(){
@@ -38,19 +145,99 @@ class MZBaseTypeController: MZBaseViewController {
 //        print(dictionary.count);
         
 //        let values  = ["1","2","3","4","5"];
-        let digitWords = ["one", "two", "three", "four", "five"]
-        let wordToValue = Dictionary(uniqueKeysWithValues: zip(digitWords, 1...5))
-        let di = Dictionary(uniqueKeysWithValues : zip(digitWords, 1...5));
-        print(di);
-        
+//        let digitWords = ["one", "two", "three", "four", "five"]
+//        let wordToValue = Dictionary(uniqueKeysWithValues: zip(digitWords, 1...5))
+//        let di = Dictionary(uniqueKeysWithValues : zip(digitWords, 1...5));
+//        print(di);
+//
 //            Dictionary(zip(digitWords, 1...5));
         
-        var dic  = [Int : String]();
+//        var dic  = [Int : String]();
+//
+//        dic.updateValue("newVaules", forKey: 3);
+//        print(dic);
+        
+        // 声明并赋值一个字典  key 为 int value为字符串
+        var responseWord = [404:"Not Net",
+                            502:"Service False",
+                            505:"error",
+                            200:"Success",
+                            600:"Unknown"];
+        
+        
+        print(responseWord.keys);
+        print(responseWord.values);
+        
+        print(responseWord[200] ?? 10);
         
         
         
+        //
+        let httpResponseCode = [200,403,301];
+        for code in httpResponseCode {
+            
+            if let message = responseWord[code]{
+                
+                print("Response\(code) :\(message)");
+            }else{
+                print("Unknown Code :\(code)");
+            }
+        }
+        
+        responseWord[301] = "Moved permanently";
+        print(responseWord[301]);
+        
+        // 值为空，则自动过滤掉了，
+        responseWord[500] =  nil;
+        print(responseWord);
+        print(responseWord[500]);
+        
+        httpResponseCode.sorted();
+        print(httpResponseCode);
+        
+        let imagePaths = ["star": "/glyphs/star.png",
+                          "portrait": "/images/content/portrait.jpg",
+                          "spacer": "/images/shared/spacer.gif"];
+        
+        for (name ,path)  in imagePaths {
+            
+            print("\(name) is in path:\(path)");
+        }
+        
+        let glyphIndex = imagePaths.index { $0.value.hasPrefix("/glyphs") };
+        if let index = glyphIndex{
+            print("The '\(imagePaths[index].key)' image is a glyph.")
+        }else{
+            print("No glyphs found!")
 
-//        dictionary =
+        }
+        
+        // 定义一个字典
+
+        var initDic = [String:String]();
+        
+        initDic["name"] = "harerbin";
+        
+        print(initDic);
+        
+        
+        
+        var initDicOne :[Int:String] = [1:"chemingming",2:"jiangling",3:"jiangdaming"];
+        print(initDicOne[2] ?? "");
+        
+        // 更新values
+        initDicOne.updateValue("wawa", forKey: 2);
+        print(initDicOne[2] ?? "");
+        
+        initDicOne[2] = "new wawa";
+        print(initDicOne[2] ?? "");
+
+//        initDicOne.removeValue(forKey: 2);
+//        print(initDicOne[2] ?? "空值");
+        // 遍历
+        for (key,values) in initDicOne {
+            print("key :\(key)  == values \(values)");
+        }
         
     }
     
@@ -93,6 +280,38 @@ class MZBaseTypeController: MZBaseViewController {
         
         
         
+        var intTypeArr = [Int]();
+        intTypeArr.append(10);
+        intTypeArr.append(500);
+        
+        
+        
+        
+        intTypeArr += [60];
+        
+        print(intTypeArr[2]);
+        
+        // 遍历数组
+        for item in intTypeArr {
+            
+            print(item);
+        }
+        
+        
+        for (index ,item) in intTypeArr.enumerated() {
+            
+            print(" 第 \(index)个为:\(item)");
+        }
+        
+        // add Arr
+        var intsA = [Int](repeating: 2, count:2)
+        var intsB = [Int](repeating: 1, count:3)
+        var intsC = [Int](repeating: 3, count:10);
+        
+        intsC = intsA + intsB + intsC;
+        print(intsC);
+        
+//        intsC.count;
         
         
     }
@@ -162,13 +381,6 @@ class MZBaseTypeController: MZBaseViewController {
         
         
         print(strB);
-        
-        
-//        strName.replacingOccurrences(of: "/", with: "-");
-//        strName.replacingOccurrences(of: <#T##StringProtocol#>, with: <#T##StringProtocol#>)
-//        print(strName);
-        
-        
     }
     
     
@@ -336,20 +548,10 @@ class MZBaseTypeController: MZBaseViewController {
 //        min = "min become string";
 //        print(min);
         
-        // 类型推断，如果不表明，回自己推断
+        // 类型推断，如果不表明，会自己推断
         var  varA = 1234.00123;
         varA = 132134.12934;
         print(varA);
-        
-        
-        
-        
-        // 类型转换
-        let numberOj :NSNumber = NSNumber.init(value: count);
-        
-        let getStr = NumberFormatter.init().string(from: numberOj);
-        print(getStr!);
-        
         
     }
     
