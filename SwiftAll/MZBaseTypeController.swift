@@ -11,6 +11,19 @@ import Foundation
 import UIKit
 
 
+enum enumName{
+    case Monday
+    case Tuesday
+    
+}
+
+struct studentMarks {
+    var mark1 = 100
+    var mark2 = 78
+    var mark3 = 98
+}
+
+
 class MZBaseTypeController: MZBaseViewController {
     
     let  host = "http://192.2.3.10:8013";
@@ -30,9 +43,22 @@ class MZBaseTypeController: MZBaseViewController {
 //        self.studyArray();
 //        self.studyDictionary();
 //        self.studyFunc();
-        self.studyClosures();
+//        self.studyClosures();
+        self.studyEnum();
         
         
+    }
+   
+    func studyEnum (){
+        var weekDay = enumName.Monday;
+        print(weekDay);
+        weekDay = enumName.Tuesday;
+        print(weekDay);
+        
+        let marks = studentMarks()
+        print("Mark1 是 \(marks.mark1)")
+        print("Mark2 是 \(marks.mark2)")
+        print("Mark3 是 \(marks.mark3)")
     }
     
     
@@ -55,7 +81,72 @@ class MZBaseTypeController: MZBaseViewController {
         }
         
         
+       // 练习闭包
+        let  clickChooseItemBlock = { (chooseTitle:String, choseID:Int) -> Int in
+            print("your chooseTitle is \(chooseTitle) and your chooseID is \(choseID)");
+            return choseID;
+        };
+        let chooseID = clickChooseItemBlock("name",10);
+        print("you get ID is \(chooseID)");
         
+        // 闭包可作为参数传递 例如 系统函数 sorted 函数
+        let array = [4,5,234,123,2,-2];
+        
+        // 1. 直接实现
+        var endArray =  array.sorted(){ (m, n) -> Bool in
+            return  m < n;
+        }
+        var  anthorArray = array.sorted { (m, n) -> Bool in
+            return m > n;
+        }
+        
+        print(array);
+        print(endArray);
+        print(anthorArray);
+        
+        print("======");
+        
+        // 2.定义两个block
+        let smallToBig = { (m :Int , n :Int ) -> Bool in
+            return  m < n;
+        };
+        let bigToSmall = { (m :Int , n :Int ) -> Bool in
+            return  m > n;
+        };
+        
+        endArray = array.sorted(by: smallToBig);
+        anthorArray = array.sorted(by: bigToSmall);
+//        array.sorted(by: <#T##(Int, Int) throws -> Bool#>)
+        
+        print(endArray);
+        print(anthorArray);
+        
+        
+        
+       
+        let  name = ["3","sd","w","xc","0"];
+        // 系统定义了一个 > 符号的 闭包，可直接使用
+        let endName = name.sorted(by: >);
+        print(endName);
+        
+        
+        
+        // 尾随闭包是一个书写在函数括号之后的闭包表达式，函数支持将其作为最后一个参数调用
+        
+        func somfuncWithClosure (closeure : (() -> Void)){
+            closeure();
+            print("somfuncWithClosure");
+        }
+        
+        somfuncWithClosure(closeure: {
+            print("===");
+        });
+        
+        somfuncWithClosure(){
+            print("?????");
+        };
+        
+       
     }
     
     
