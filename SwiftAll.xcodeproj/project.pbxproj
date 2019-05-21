@@ -9,12 +9,13 @@
 /* Begin PBXBuildFile section */
 		170BEB9A7D806F51A6E10877 /* Pods_SwiftAll.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8AC9B42BFC8FDD928D61AC4 /* Pods_SwiftAll.framework */; };
 		3A71A3121F01195E00B9BE4F /* MZBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A71A3111F01195E00B9BE4F /* MZBaseViewController.swift */; };
-		3A71A3141F0119DC00B9BE4F /* MZFontViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A71A3131F0119DC00B9BE4F /* MZFontViewController.swift */; };
 		3A7D00A11EF9252A00D47F9C /* MZRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7D00A01EF9252A00D47F9C /* MZRootViewController.swift */; };
 		3AE364091ECAD46A00559E35 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE364081ECAD46A00559E35 /* AppDelegate.swift */; };
 		3AE3640E1ECAD46A00559E35 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AE3640C1ECAD46A00559E35 /* Main.storyboard */; };
 		3AE364101ECAD46A00559E35 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AE3640F1ECAD46A00559E35 /* Assets.xcassets */; };
 		3AE364131ECAD46A00559E35 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AE364111ECAD46A00559E35 /* LaunchScreen.storyboard */; };
+		3E2B532C2293F80D00209292 /* MZUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2B532B2293F80D00209292 /* MZUIViewController.swift */; };
+		3E2B532E2294007B00209292 /* MZTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2B532D2294007B00209292 /* MZTableViewController.swift */; };
 		46485E742028391200833499 /* MZBaseTypeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46485E732028391200833499 /* MZBaseTypeController.swift */; };
 /* End PBXBuildFile section */
 
@@ -22,7 +23,6 @@
 		0B529FB7A84EE53ECB7083C4 /* Pods-SwiftAll.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftAll.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftAll/Pods-SwiftAll.release.xcconfig"; sourceTree = "<group>"; };
 		168AA9D3C88ACE968962F54D /* Pods-SwiftAll.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftAll.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftAll/Pods-SwiftAll.debug.xcconfig"; sourceTree = "<group>"; };
 		3A71A3111F01195E00B9BE4F /* MZBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MZBaseViewController.swift; sourceTree = "<group>"; };
-		3A71A3131F0119DC00B9BE4F /* MZFontViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MZFontViewController.swift; sourceTree = "<group>"; };
 		3A7D00A01EF9252A00D47F9C /* MZRootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MZRootViewController.swift; sourceTree = "<group>"; };
 		3AE364051ECAD46A00559E35 /* SwiftAll.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftAll.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AE364081ECAD46A00559E35 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -30,6 +30,8 @@
 		3AE3640F1ECAD46A00559E35 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3AE364121ECAD46A00559E35 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3AE364141ECAD46A00559E35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3E2B532B2293F80D00209292 /* MZUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MZUIViewController.swift; sourceTree = "<group>"; };
+		3E2B532D2294007B00209292 /* MZTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MZTableViewController.swift; sourceTree = "<group>"; };
 		46485E732028391200833499 /* MZBaseTypeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MZBaseTypeController.swift; sourceTree = "<group>"; };
 		D8AC9B42BFC8FDD928D61AC4 /* Pods_SwiftAll.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftAll.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -68,10 +70,11 @@
 			isa = PBXGroup;
 			children = (
 				3AE364081ECAD46A00559E35 /* AppDelegate.swift */,
-				3A7D00A01EF9252A00D47F9C /* MZRootViewController.swift */,
 				3A71A3111F01195E00B9BE4F /* MZBaseViewController.swift */,
+				3A7D00A01EF9252A00D47F9C /* MZRootViewController.swift */,
 				46485E732028391200833499 /* MZBaseTypeController.swift */,
-				3A71A3131F0119DC00B9BE4F /* MZFontViewController.swift */,
+				3E2B532B2293F80D00209292 /* MZUIViewController.swift */,
+				3E2B532D2294007B00209292 /* MZTableViewController.swift */,
 				3AE3640C1ECAD46A00559E35 /* Main.storyboard */,
 				3AE3640F1ECAD46A00559E35 /* Assets.xcassets */,
 				3AE364111ECAD46A00559E35 /* LaunchScreen.storyboard */,
@@ -229,9 +232,10 @@
 			files = (
 				3A7D00A11EF9252A00D47F9C /* MZRootViewController.swift in Sources */,
 				3AE364091ECAD46A00559E35 /* AppDelegate.swift in Sources */,
-				3A71A3141F0119DC00B9BE4F /* MZFontViewController.swift in Sources */,
 				3A71A3121F01195E00B9BE4F /* MZBaseViewController.swift in Sources */,
 				46485E742028391200833499 /* MZBaseTypeController.swift in Sources */,
+				3E2B532E2294007B00209292 /* MZTableViewController.swift in Sources */,
+				3E2B532C2293F80D00209292 /* MZUIViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

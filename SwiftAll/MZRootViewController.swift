@@ -28,7 +28,8 @@ class MZRootViewController: UIViewController,UITableViewDelegate,UITableViewData
         self.vcList = NSMutableArray.init(capacity: 5);
         
         self.vcList.add("MZBaseTypeController")
-        self.vcList.add("MZFontViewController")
+        self.vcList.add("MZUIViewController")
+        self.vcList.add("MZTableViewController")
 //        self.vcList.add("MZFontViewController")
         
         demoList = UITableView(frame: CGRect(x: 0, y: 64, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height))
@@ -63,15 +64,19 @@ class MZRootViewController: UIViewController,UITableViewDelegate,UITableViewData
         
         var  next : UIViewController = UIViewController.init();
         if indexPath.row  == 0 {
-            next = MZBaseTypeController();
+            next = MZBaseTypeController( );
             next.title = "基础数据类型";
             next.view.backgroundColor = UIColor.purple
         }
         
         if indexPath.row  == 1 {
-            next = MZFontViewController( );
-            next.view.backgroundColor = UIColor.blue
+            next = MZUIViewController();
         }
+
+        if indexPath.row  == 2 {
+            next = MZTableViewController();
+        }
+
 
         self.navigationController?.pushViewController(next, animated: true)
         

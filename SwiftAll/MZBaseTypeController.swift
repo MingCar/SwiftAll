@@ -17,6 +17,24 @@ enum enumName{
     
 }
 
+enum Compasspoint {
+    case North
+    case South
+    case East,West // 也可以一行用逗号隔开
+}
+
+// 定义一个叫Barcode的枚举类型，他的一个成员值是具有(int ,int,int ）类型关联值的upc,另一个成员是具有String类型关联值的qrCode
+// 不再是固定的关联一个值
+enum Barcode {
+    case uqc(Int,Int,Int)
+    case qrCode(String)
+}
+
+enum ASCIIControlCharacter: Character {
+    case tab = "\t"
+    case linFeed = "\n"
+}
+
 struct studentMarks {
     var mark1 = 100
     var mark2 = 78
@@ -24,15 +42,21 @@ struct studentMarks {
 }
 
 
-class MZBaseTypeController: MZBaseViewController {
+class MZBaseTypeController: UIViewController {
     
     let  host = "http://192.2.3.10:8013";
 
-   
+    var lbCountCenter : UILabel?;
     
+    
+   
+//    required init?(coder aDecoder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
     override func viewDidLoad() {
         
-        
+        self.priseLabel();
+
         
 //        self.studyDateType();
 //        self.studyVar();
@@ -44,21 +68,155 @@ class MZBaseTypeController: MZBaseViewController {
 //        self.studyDictionary();
 //        self.studyFunc();
 //        self.studyClosures();
-        self.studyEnum();
-        
-        
+//        self.studyEnum();
+//        self.studyStruct();
+        self.studyClass();
+
     }
-   
+
+    func studyClass() {
+
+        // 属性
+        /**
+         属性
+         */
+
+
+        class FollowModel {
+
+            var userName = "";
+            var userIgv = "";
+            var userID = "";
+        }
+
+    }
+
+    // 学习结构体
+    func studyStruct() {
+
+        /**
+         Swift 中类和结构体相同的点：
+         定义属性用于存值
+         定于方法用于提供功能
+         定义下标操作使得可以通过下标语法来访问实例所包含的值
+         定于构造器用于生成初始化值
+         通过扩展增加默认实现的功能
+         实现协议
+
+         与结构体相比，类的附加功能：
+         可继承
+         类型转换允许在运行时检查和解释一个类实例的类型
+         析构器允许一个类实例释放其被分配的资源
+         引用计数允许对一个类的多次饮用
+
+         *结构体不使用引用计数
+
+
+
+         */
+
+
+        struct Resolution {
+            // 定义一个结构体
+            var width = 0
+            var height = 0
+        }
+
+        class VideoMode {
+              // 定义一个类
+            var resolution = Resolution()
+            var interlaced = false
+            var frameRate = 0.0
+            var name: String?
+        }
+
+        // 实例一个类对象和结构体
+        let someResolution = Resolution();
+        let someVideoMolde = VideoMode();
+
+        // 属性访问
+        print("The width of someResolution is \(someResolution.width)")
+        print("The width of someVideoMode is \(someVideoMolde.resolution.width)")
+
+        // 赋值
+        someVideoMolde.frameRate = 1080.0;
+
+        // 所有的结构体都一个自动生成的构造器
+        let vga = Resolution(width: 500, height: 520)
+
+        // 所有的基本类型，都是值类型，在底层是以结构体的形式实现，包括枚举和结构体。在代码传递时候都会被复制。但是类是引用类型
+        var cinema = vga; // cinema 是 vga 的拷贝副本，不是vga 本身。
+        cinema.width = 400;
+        // 猜猜这时候 vga 的宽变了嘛，没有。
+        if cinema.width == vga.width{
+            print("vga 变了")
+        }else{
+            print("vga 没变")
+        }
+        // 引用类型被赋值到另一个对象时候，不会被拷贝。而是被引用
+        let entity = VideoMode();
+        entity.frameRate = 750.0;
+
+        let otherEntity = entity;
+        otherEntity.frameRate = 1034.0;
+        // 猜猜变了没
+        if entity.frameRate == otherEntity.frameRate {
+            print("entity 变了")
+        }else{
+            print("entity 没变")
+        }
+
+        if entity === otherEntity {
+            print("他俩拥有一个内存地址，这个恒等式真好用")
+        }
+
+        /**
+         Swift 中，许多基本类型，诸如String，Array和Dictionary类型均以结构体的形式实现。
+         这意味着被赋值给新的常量或变量，或者被传入函数或方法中时，它们的值会被拷贝。
+
+         Objective-C 中NSString，NSArray和NSDictionary类型均以类的形式实现，而并非结
+         构体。它们在被赋值或者被传入函数或方法时，不会发生值拷贝，而是传递现有实例的引用
+         */
+
+    }
+
+    // 学习枚举
     func studyEnum (){
+        // Swift 在创建时不会被赋予一个默认的整形值。每一个枚举都定义了一个全新的类型，有点类似于 类
         var weekDay = enumName.Monday;
         print(weekDay);
         weekDay = enumName.Tuesday;
         print(weekDay);
-        
-        let marks = studentMarks()
-        print("Mark1 是 \(marks.mark1)")
-        print("Mark2 是 \(marks.mark2)")
-        print("Mark3 是 \(marks.mark3)")
+
+        var  drection = Compasspoint.West
+        drection = Compasspoint.East;
+        switch drection {
+        case .South:
+            print("south")
+            break
+        case .North:
+            print("nouth")
+            break
+        case .West:
+            print("West")
+            break
+        case .East:
+            print("East")
+            break
+        }
+        // 关联值
+        // 只能存储这两个值中的一个
+        var productBarcode =  Barcode.uqc(4, 4, 4);
+//        productBarcode = Barcode.qrCode("AOUHLSKDFH");
+        print(productBarcode);
+
+        // 原始值
+        print(" \(ASCIIControlCharacter.tab) + \(ASCIIControlCharacter.linFeed)");
+
+        // 递归枚举？？
+
+
+
     }
     
     
@@ -646,5 +804,28 @@ class MZBaseTypeController: MZBaseViewController {
         
     }
     
-    
+    func priseLabel() {
+        let lbCount:UILabel = UILabel.init(frame: CGRect(x: 35, y: 100, width:20, height: 20));
+        lbCount.textAlignment = .center;
+        lbCount.font = UIFont.systemFont(ofSize: 10);
+        lbCount.backgroundColor = UIColor.red;
+        lbCount.textColor = UIColor.white;
+        lbCount.layer.masksToBounds = true;
+        lbCount.layer.cornerRadius = 10;
+        lbCount.text = "99";
+        lbCount.clipsToBounds = false;
+        self.view.addSubview(lbCount);
+
+        lbCountCenter = lbCount;
+        print("ggege == \(String(describing: lbCountCenter))");
+
+        let temp = Int(arc4random()%100)+1;
+        var x = "--";
+        if temp > 99 {
+            x = "...";
+        } else {
+            x = String(temp);
+        }
+        lbCountCenter?.text = x;
+    }
 }
