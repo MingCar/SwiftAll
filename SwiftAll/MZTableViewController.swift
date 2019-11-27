@@ -24,7 +24,12 @@ class MZTableViewController: MZBaseViewController {
     //  拉取网络数据
     func getData()  {
 
-        let urlString  = "https://api.apiopen.top/getSongPoetry?page=1&count=20";
+        let urlString  = "http://route.showapi.com/341-1";
+
+        let parameters = ["page":"1",
+                        "maxResult":"50"];
+
+//        Alamofire.request(urlString, method: .post, parameters: parameters, encoding: 0, headers: 0)
 
         Alamofire.request(urlString).response { response in
             print("Request: \(response.request)")
@@ -35,6 +40,7 @@ class MZTableViewController: MZBaseViewController {
                 print("Data: \(utf8Text)")
                 let lab =  UILabel.init(frame: CGRect(x: 50, y: 100, width: 300, height: 300));
                 lab.text = utf8Text;
+                lab.numberOfLines = 0;
 
 
 

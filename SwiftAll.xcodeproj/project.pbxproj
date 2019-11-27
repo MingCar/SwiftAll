@@ -16,6 +16,7 @@
 		3AE364131ECAD46A00559E35 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AE364111ECAD46A00559E35 /* LaunchScreen.storyboard */; };
 		3E2B532C2293F80D00209292 /* MZUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2B532B2293F80D00209292 /* MZUIViewController.swift */; };
 		3E2B532E2294007B00209292 /* MZTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2B532D2294007B00209292 /* MZTableViewController.swift */; };
+		3E5345B722CA07BA00C0DEA5 /* MZAnimationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5345B622CA07B900C0DEA5 /* MZAnimationViewController.swift */; };
 		46485E742028391200833499 /* MZBaseTypeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46485E732028391200833499 /* MZBaseTypeController.swift */; };
 /* End PBXBuildFile section */
 
@@ -32,6 +33,7 @@
 		3AE364141ECAD46A00559E35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3E2B532B2293F80D00209292 /* MZUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MZUIViewController.swift; sourceTree = "<group>"; };
 		3E2B532D2294007B00209292 /* MZTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MZTableViewController.swift; sourceTree = "<group>"; };
+		3E5345B622CA07B900C0DEA5 /* MZAnimationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MZAnimationViewController.swift; sourceTree = "<group>"; };
 		46485E732028391200833499 /* MZBaseTypeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MZBaseTypeController.swift; sourceTree = "<group>"; };
 		D8AC9B42BFC8FDD928D61AC4 /* Pods_SwiftAll.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftAll.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -75,6 +77,7 @@
 				46485E732028391200833499 /* MZBaseTypeController.swift */,
 				3E2B532B2293F80D00209292 /* MZUIViewController.swift */,
 				3E2B532D2294007B00209292 /* MZTableViewController.swift */,
+				3E5345B622CA07B900C0DEA5 /* MZAnimationViewController.swift */,
 				3AE3640C1ECAD46A00559E35 /* Main.storyboard */,
 				3AE3640F1ECAD46A00559E35 /* Assets.xcassets */,
 				3AE364111ECAD46A00559E35 /* LaunchScreen.storyboard */,
@@ -112,7 +115,6 @@
 				3AE364021ECAD46A00559E35 /* Frameworks */,
 				3AE364031ECAD46A00559E35 /* Resources */,
 				AC1B7C14130FFD30CD28180F /* [CP] Embed Pods Frameworks */,
-				2E9FE3C21A6371468F547D4E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -172,21 +174,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2E9FE3C21A6371468F547D4E /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwiftAll/Pods-SwiftAll-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		969D89F76D0F18EF79C8E671 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -235,6 +222,7 @@
 				3A71A3121F01195E00B9BE4F /* MZBaseViewController.swift in Sources */,
 				46485E742028391200833499 /* MZBaseTypeController.swift in Sources */,
 				3E2B532E2294007B00209292 /* MZTableViewController.swift in Sources */,
+				3E5345B722CA07BA00C0DEA5 /* MZAnimationViewController.swift in Sources */,
 				3E2B532C2293F80D00209292 /* MZUIViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -359,12 +347,15 @@
 			baseConfigurationReference = 168AA9D3C88ACE968962F54D /* Pods-SwiftAll.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7LN4P5J2GP;
 				INFOPLIST_FILE = SwiftAll/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Ming.SwiftAll;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -374,12 +365,15 @@
 			baseConfigurationReference = 0B529FB7A84EE53ECB7083C4 /* Pods-SwiftAll.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7LN4P5J2GP;
 				INFOPLIST_FILE = SwiftAll/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Ming.SwiftAll;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

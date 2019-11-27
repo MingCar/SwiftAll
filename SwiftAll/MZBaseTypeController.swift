@@ -7,6 +7,24 @@
 //  Copyright © 2018年 Ming. All rights reserved.
 //
 
+/*
+ 0000   0
+ 0001   1
+ 0010   2
+ 0011   3
+ 0100   4
+ 0101   5
+ 0110   6
+ 0111   7
+ 1000   8
+ 1001   9
+ 1010   A
+ 1011   B
+ 1100   C
+ 1101   D
+ 1110   E
+ 1111   F
+ */
 import Foundation
 import UIKit
 
@@ -58,18 +76,18 @@ class MZBaseTypeController: UIViewController {
         self.priseLabel();
 
         
-//        self.studyDateType();
-//        self.studyVar();
-//        self.studyOptionalType();
-//        self.studyAdd();
-//        self.studyLiuCheng();
-//        self.studyString();
-//        self.studyArray();
-//        self.studyDictionary();
-//        self.studyFunc();
-//        self.studyClosures();
-//        self.studyEnum();
-//        self.studyStruct();
+        self.studyDateType();
+        self.studyVar();
+        self.studyOptionalType();
+        self.studyAdd();
+        self.studyLiuCheng();
+        self.studyString();
+        self.studyArray();
+        self.studyDictionary();
+        self.studyFunc();
+        self.studyClosures();
+        self.studyEnum();
+        self.studyStruct();
         self.studyClass();
 
     }
@@ -566,7 +584,11 @@ class MZBaseTypeController: UIViewController {
     }
     
     func studyString(){
-        
+
+        /* String 是值类型、d如果你创建了一个新的字符串，那么当其进行常量、变量赋值操作，
+         或在方法中传递时候，会进行值拷贝。在前述情况下，对创建新副本，并对新副本进行操作，而非原始字符
+
+         */
         
         var str = "";
         if str.isEmpty {
@@ -616,20 +638,86 @@ class MZBaseTypeController: UIViewController {
         print(isMulti);
         
         // 转换
-        var intStr = "23412";
+        let intStr = "23412";
         let intX =  Int(intStr);
         print(intStr);
         
         
-        //
-        for c in strName.characters {
+        // 遍历字符串，获取每个字符
+        print("遍历字符串，获取每个字符")
+        for c in "strName.characters" {
             print(c);
         }
-        
-       
-        
-        
         print(strB);
+
+        // 多行字符串
+        let x = 19;
+        let someString = """
+        这里的内容“”“/1345!##@$#@%$@%@##@$$#都是字符串
+        aldksjhf ;
+        345
+        6a5s4
+        \0 这是个空字符
+        \\ 反斜线
+        \t 水平制表符
+        \n 换行
+        \r 回车
+        \" 双引号
+        \' 单引号
+        \(x)
+        """
+
+
+        // 单个字符
+        let catCharacters :Character = "!"
+        print("打印字符\(catCharacters)")
+        // 多个字符拼成字符串
+        let cat :[Character] = ["x","c","x"];
+        let catString = String(cat);
+        print("打印字符串\(catString)");
+
+        /* Unicode
+         为每种语言中的每个字符设定了统一并且唯一的二进制编码，以满足跨语言、跨平台进行文本转换、处理的要求。1990年开始研发，1994年正式公布
+
+         UTF-8以字节为单位对Unicode进行编码 最大长度是8
+         00000000 00000000 00000000 00000000
+
+         例如 汉 unicode编码是 0x6c49
+
+         */
+
+        let validUTF8: [CChar] = [67, 97, 102, -61, -87, 0]
+        validUTF8.withUnsafeBufferPointer { ptr in
+             let s = String(validatingUTF8: ptr.baseAddress!)
+             print(s)
+        }
+
+        // 可扩展的字形集
+        let eAcute:Character = "\u{e9}";
+        let commbinedAcute:Character = "\u{65}\u{301}";
+        print(eAcute);
+        print(commbinedAcute);
+        print("commbinedAcute");
+
+        // 计算字符数量 扩展的还算做1个
+        var word = "cafe";
+        print("word count:\(word.count)"); // cafe 4
+        word.append("\u{301}");
+        print("After word count:\(word.count)"); // café 4
+
+        // 字符串索引
+        let index2 = word.index(word.startIndex, offsetBy: 1);
+        print(index2);
+
+        // 插入
+        word.insert(contentsOf: "content", at: word.endIndex)
+        print("after inser:\(word)"); // cafécontent
+
+        // 删除
+        word.remove(at: word.index(before: word.endIndex));
+        print("after remove :\(word)"); // caféconten
+
+        
     }
     
     
@@ -669,7 +757,7 @@ class MZBaseTypeController: UIViewController {
          
          & 必须两个都为 真
          | 只要有一个为 真
-         ^  连个值不相同就为 真
+         ^  两个值不相同就为 真
          ~ 取反  0 --> 1       1 --> 0
          << 按位左移动    1111 1111 -->  1111 1100
          >> 按位右移动    1111 1111 -->  0011 1111
@@ -773,7 +861,8 @@ class MZBaseTypeController: UIViewController {
         
         let   money :Decimal = 5628.23;
         print(money);
-        
+
+        print("money is )\(money)")
         
         // bool 三个值  nil  ture  false
         var  bool :Bool?;
