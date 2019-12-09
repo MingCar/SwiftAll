@@ -34,7 +34,7 @@ class MZAnimationViewController : MZBaseViewController  {
 
 
     //  添加动画
-    func addAnimationLayer() {
+    @objc func addAnimationLayer() {
 
         print("开始动画")
         let animation = CAKeyframeAnimation.init(keyPath: "alpha")

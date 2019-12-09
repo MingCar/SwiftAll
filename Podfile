@@ -6,5 +6,5 @@ target 'SwiftAll' do
   use_frameworks!
 
   # Pods for SwiftAll
- pod 'Alamofire', '4.4.0'
+ pod 'Alamofire'
 end

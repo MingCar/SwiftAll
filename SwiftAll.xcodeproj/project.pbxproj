@@ -17,6 +17,8 @@
 		3E2B532C2293F80D00209292 /* MZUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2B532B2293F80D00209292 /* MZUIViewController.swift */; };
 		3E2B532E2294007B00209292 /* MZTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2B532D2294007B00209292 /* MZTableViewController.swift */; };
 		3E5345B722CA07BA00C0DEA5 /* MZAnimationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5345B622CA07B900C0DEA5 /* MZAnimationViewController.swift */; };
+		3EE0943C2390F704002E3DDD /* string.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EE0943B2390F704002E3DDD /* string.png */; };
+		3EE0943E2390F742002E3DDD /* set.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EE0943D2390F742002E3DDD /* set.png */; };
 		46485E742028391200833499 /* MZBaseTypeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46485E732028391200833499 /* MZBaseTypeController.swift */; };
 /* End PBXBuildFile section */
 
@@ -34,6 +36,8 @@
 		3E2B532B2293F80D00209292 /* MZUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MZUIViewController.swift; sourceTree = "<group>"; };
 		3E2B532D2294007B00209292 /* MZTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MZTableViewController.swift; sourceTree = "<group>"; };
 		3E5345B622CA07B900C0DEA5 /* MZAnimationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MZAnimationViewController.swift; sourceTree = "<group>"; };
+		3EE0943B2390F704002E3DDD /* string.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = string.png; sourceTree = "<group>"; };
+		3EE0943D2390F742002E3DDD /* set.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = set.png; sourceTree = "<group>"; };
 		46485E732028391200833499 /* MZBaseTypeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MZBaseTypeController.swift; sourceTree = "<group>"; };
 		D8AC9B42BFC8FDD928D61AC4 /* Pods_SwiftAll.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftAll.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -78,6 +82,8 @@
 				3E2B532B2293F80D00209292 /* MZUIViewController.swift */,
 				3E2B532D2294007B00209292 /* MZTableViewController.swift */,
 				3E5345B622CA07B900C0DEA5 /* MZAnimationViewController.swift */,
+				3EE0943B2390F704002E3DDD /* string.png */,
+				3EE0943D2390F742002E3DDD /* set.png */,
 				3AE3640C1ECAD46A00559E35 /* Main.storyboard */,
 				3AE3640F1ECAD46A00559E35 /* Assets.xcassets */,
 				3AE364111ECAD46A00559E35 /* LaunchScreen.storyboard */,
@@ -147,6 +153,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -165,8 +172,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3EE0943C2390F704002E3DDD /* string.png in Resources */,
 				3AE364131ECAD46A00559E35 /* LaunchScreen.storyboard in Resources */,
 				3AE364101ECAD46A00559E35 /* Assets.xcassets in Resources */,
+				3EE0943E2390F742002E3DDD /* set.png in Resources */,
 				3AE3640E1ECAD46A00559E35 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -198,7 +207,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-SwiftAll/Pods-SwiftAll-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-SwiftAll/Pods-SwiftAll-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -207,7 +216,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwiftAll/Pods-SwiftAll-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SwiftAll/Pods-SwiftAll-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -356,7 +365,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Ming.SwiftAll;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -374,7 +383,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Ming.SwiftAll;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};

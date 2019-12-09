@@ -76,19 +76,21 @@ class MZBaseTypeController: UIViewController {
         self.priseLabel();
 
         
-        self.studyDateType();
-        self.studyVar();
-        self.studyOptionalType();
-        self.studyAdd();
-        self.studyLiuCheng();
-        self.studyString();
-        self.studyArray();
-        self.studyDictionary();
+//        self.studyDateType();
+//        self.studyVar();
+//        self.studyOptionalType();
+//        self.studyAdd();
+//        self.studyLiuCheng();
+//        self.studyString();
+//        self.studyArray();
+//        self.studySet()
+//        self.studyDictionary();
+//        self.studyFor();
         self.studyFunc();
-        self.studyClosures();
-        self.studyEnum();
-        self.studyStruct();
-        self.studyClass();
+//        self.studyClosures();
+//        self.studyEnum();
+//        self.studyStruct();
+//        self.studyClass();
 
     }
 
@@ -327,18 +329,72 @@ class MZBaseTypeController: UIViewController {
     
     
     func studyFunc() {
-        
+
+        /*
+         函数是一段完成特定任务的独立代码片段。你可以通过给函数命名来标识某个函数的功能，这个名字可以被用来在需要的时候“调用”这个函数来完成它的任务。
+
+         Swift 统一的函数语法非常的灵活，可以用来表示任何函数，包括从最简单的没有参数名字的 C 风格函数，到复杂的带局部和外部参数名的 Objective-C 风格函数。参数可以提供默认值，以简化函数调用。参数也可以既当做传入参数，也当做传出参数，也就是说，一旦函数执行结束，传入的参数值将被修改。
+
+         在 Swift 中，每个函数都有一个由函数的参数值类型和返回值类型组成的类型。你可以把函数类型当做任何其他普通变量类型一样处理，这样就可以更简单地把函数当做别的函数的参数，也可以从其他函数中返回函数。函数的定义可以写在其他函数定义中，这样可以在嵌套函数范围内实现功能封装。
+
+         */
+
         let fullUrl = self.dealUrl(urlStr: "/commentList");
         print("\(fullUrl)");
         
-        // 返回元组
+        // 返回值为 元组
         var result =  self.getCommentList(url: fullUrl);
         if result!.success {
             print(result?.result["resultDic"] ?? "加载失败");
         }else{
             print("加载失败");
         }
-        
+
+
+        // 多重返回值函数
+        func minMax(array :[Int]) ->(min:Int,max:Int){
+            var currentMin = array[0];
+            var currentMax  = array[0]
+            for value  in array[1..<array.count] {
+                if value < currentMin{
+                    currentMin = value;
+                }else if value > currentMax{
+                    currentMax = value;
+                }
+            }
+            return (currentMin,currentMax)
+        }
+
+        let minmaxResult =  minMax(array: [35,565,89,8,-9,333,66])
+        print("min == \(minmaxResult.min) max == \(minmaxResult.max)");
+
+
+        // 可选元组返回类型
+        func minMax2(array:[Int])->(min:Int,max:Int)?{
+
+            if array.isEmpty {
+                return nil
+            }
+            var currentMin = array[0];
+            var currentMax  = array[0]
+            for value  in array[1..<array.count] {
+                if value < currentMin{
+                    currentMin = value;
+                }else if value > currentMax{
+                    currentMax = value;
+                }
+            }
+            return (currentMin,currentMax)
+
+        }
+
+        if let bool = minMax2(array: [5,5]){
+            print("min == \(bool.min) max == \(bool.max)");
+        }else{
+            print("cant find the min and max value");
+        }
+
+
         // 可变参数
         self.vars(number: "1","2","3");
         self.vars(number: 1,2,33,45);
@@ -404,128 +460,443 @@ class MZBaseTypeController: UIViewController {
         }
         return host.appendingFormat(urlStr, 0);
     }
-    
-    func studyDictionary(){
-        
-//        var dictionary = [("key1",1),("key2",2)];
-//
-//        print(dictionary.count);
-        
-//        let values  = ["1","2","3","4","5"];
-//        let digitWords = ["one", "two", "three", "four", "five"]
-//        let wordToValue = Dictionary(uniqueKeysWithValues: zip(digitWords, 1...5))
-//        let di = Dictionary(uniqueKeysWithValues : zip(digitWords, 1...5));
-//        print(di);
-//
-//            Dictionary(zip(digitWords, 1...5));
-        
-//        var dic  = [Int : String]();
-//
-//        dic.updateValue("newVaules", forKey: 3);
-//        print(dic);
-        
-        // 声明并赋值一个字典  key 为 int value为字符串
-        var responseWord = [404:"Not Net",
-                            502:"Service False",
-                            505:"error",
-                            200:"Success",
-                            600:"Unknown"];
-        
-        
-        print(responseWord.keys);
-        print(responseWord.values);
-        
-        print(responseWord[200] ?? 10);
-        
-        
-        
+
+
+    func studyFor(){
+
+        /*
+         Swift 提供了多种流程控制结构，包括可以多次执行任务的 while 循环，基于特定条件选择执行不同代码分支的 if、guard 和 switch 语句，还有控制流程跳转到其他代码位置的 break 和 continue 语句。
+
+         Swift 还提供了 for-in 循环，用来更简单地遍历数组（Array），字典（Dictionary），区间（Range），字符串（String）和其他序列类型。
+
+         Swift 的 switch 语句比许多类 C 语言要更加强大。case 还可以匹配很多不同的模式，包括范围匹配，元组（tuple）和特定类型匹配。switch 语句的 case 中匹配的值可以声明为临时常量或变量，在 case 作用域内使用，也可以配合 where 来描述更复杂的匹配条件。
+
+         */
+
+        // 遍历数组
+        let names = ["Anna", "Alex", "Brian", "Jack"]
+        for name in names {
+            print("Hello, \(name)!")
+        }
+
+        //  1 2 3 4 5
+        for index in 1...5 {
+            print("\(index) times 5 is \(index * 5)")
+        }
+
+        // 如果你不需要区间序列内每一项的值，你可以使用下划线（_）替代变量名来忽略这个值：
+        let x = 4;
+        var answer = 1;
+        for _ in 1...8 {
+            answer *= x;
+        }
+        // 计算 4 的8 次方
+        print("answer == \(answer)")
+
+
+        // 遍历区间改为 [1,8)
+        for index in 1..<8 {
+            print("index == \(index)")
+        }
+
+        // 半开区间
+        let namess = ["Anna", "Alex", "Brian", "Jack"]
+        let count = namess.count
+        for i in 0..<count {
+            print("第 \(i + 1) 个人叫 \(namess[i])")
+        }
+
+        // range
+        for i  in namess[...2] {
+            print(i)
+        }// Anna Alex Brian
+
+
+        for i  in namess[..<2] {
+            print(i)
+        }// Anna Alex
+
+        for i  in namess[2...] {
+            print(i)
+        }// Brian Jack
+
+
         //
-        let httpResponseCode = [200,403,301];
-        for code in httpResponseCode {
-            
-            if let message = responseWord[code]{
-                
-                print("Response\(code) :\(message)");
-            }else{
-                print("Unknown Code :\(code)");
+
+
+        print("========== while")
+
+
+
+
+        /*
+        //eg 官方小游戏
+        let finalSquare = 25
+        var board = [Int](repeating: 0, count: finalSquare + 1)
+        board[03] = +08; board[06] = +11; board[09] = +09; board[10] = +02
+        board[14] = -10; board[19] = -11; board[22] = -02; board[24] = -08
+
+        var square = 0
+        var diceRoll = 0
+        while square < finalSquare {
+            // 掷骰子
+            diceRoll += 1
+            if diceRoll == 7 { diceRoll = 1 }
+            // 根据点数移动
+            square += diceRoll
+            if square < board.count {
+                // 如果玩家还在棋盘上，顺着梯子爬上去或者顺着蛇滑下去
+                square += board[square]
             }
+            print(diceRoll)
         }
-        
-        responseWord[301] = "Moved permanently";
-        print(responseWord[301]);
-        
-        // 值为空，则自动过滤掉了，
-        responseWord[500] =  nil;
-        print(responseWord);
-        print(responseWord[500]);
-        
-        httpResponseCode.sorted();
-        print(httpResponseCode);
-        
-        let imagePaths = ["star": "/glyphs/star.png",
-                          "portrait": "/images/content/portrait.jpg",
-                          "spacer": "/images/shared/spacer.gif"];
-        
-        for (name ,path)  in imagePaths {
-            
-            print("\(name) is in path:\(path)");
+        print("Game over!")
+        */
+
+
+        /*
+         switch 语句会尝试把某个值与若干个模式（pattern）进行匹配。根据第一个匹配成功的模式，switch 语句会执行对应的代码。当有可能的情况较多时，通常用 switch 语句替换 if 语句。
+
+         匹配int ,string,元组
+
+         */
+        var cellType:Int = 8;
+        cellType = 2;
+        var cellName =  self.getCellType(type: cellType)
+        print(cellName)
+
+        cellType = 312;
+        cellName =  self.getCellType(type: cellType)
+        print(cellName)
+
+
+        // switch 元组
+        var point = (4,7)
+        var result = self.getYuanZu(somePoint: point)
+        print(result)
+
+
+        point = (0,9)
+        result = self.getYuanZu(somePoint: point)
+        print(result)
+
+
+        // 值绑定（Value Bindings）
+        point = (2,0);
+        result = self.getValueBindings(somePoint: point)
+        print(result)
+
+
+        // case and where
+        point = (2,2);
+        result = self.getCaseWithWhere(somePoint: point)
+        print(result)
+
+        point = (2,9);
+        result = self.getCaseWithWhere(somePoint: point)
+        print(result)
+
+        /*
+         在 Swift 里，switch 语句不会从上一个 case 分支跳转到下一个 case 分支中。相反，只要第一个匹配到的 case 分支完成了它需要执行的语句，整个 switch 代码块完成了它的执行。相比之下，C 语言要求你显式地插入 break 语句到每个 case 分支的末尾来阻止自动落入到下一个 case 分支中。Swift 的这种避免默认落入到下一个分支中的特性意味着它的 switch 功能要比 C 语言的更加清晰和可预测，可以避免无意识地执行多个 case 分支从而引发的错误。
+
+         如果你确实需要 C 风格的贯穿的特性，你可以在每个需要该特性的 case 分支中使用 fallthrough 关键字。下面的例子使用 fallthrough 来创建一个数字的描述语句
+
+         fallthrough 关键字不会检查它下一个将会落入执行的 case 中的匹配条件。fallthrough 简单地使代码继续连接到下一个 case 中的代码，这和 C 语言标准中的 switch 语句特性是一样的
+
+         */
+
+        let integerToDescribe = 5
+        var description = "The number \(integerToDescribe) is"
+        switch integerToDescribe {
+        case 2, 3, 5, 7, 11, 13, 17, 19:
+            description += " a prime number, and also"
+            fallthrough
+        default:
+            description += " an integer."
         }
-        
-        let glyphIndex = imagePaths.index { $0.value.hasPrefix("/glyphs") };
-        if let index = glyphIndex{
-            print("The '\(imagePaths[index].key)' image is a glyph.")
+        print(description)
+        // 输出“The number 5 is a prime number, and also an integer.”
+
+
+        //
+        if #available(iOS 10, macOS 10.12, *) {
+            // 在 iOS 使用 iOS 10 的 API, 在 macOS 使用 macOS 10.12 的 API
+        } else {
+            // 使用先前版本的 iOS 和 macOS 的 API
+        }
+
+    }
+
+
+
+    func getCaseWithWhere(somePoint : (Int,Int)) -> String {
+
+        switch somePoint {
+        case let (x, y) where x == y:
+            return "(\(x), \(y)) is on the line x == y"
+        case let (x, y) where x == -y:
+            return "(\(x), \(y)) is on the line x == -y"
+        case let (x, y):
+            return "(\(x), \(y)) is just some arbitrary point"
+        }
+
+    }
+
+
+    func getValueBindings(somePoint : (Int,Int)) -> String {
+        // case 分支允许将匹配的值声明为临时常量或变量，并且在 case 分支体内使用
+        switch somePoint {
+        case (let x, 0):
+            return "on the x-axis with an x value of \(x)"
+        case (0, let y):
+            return "on the y-axis with a y value of \(y)"
+        case let (x, y):
+            return "somewhere else at (\(x), \(y))"
+        }
+
+
+    }
+
+
+    func getYuanZu(somePoint : (Int,Int)) -> String {
+
+        // _ 匹配所有可能的值
+        switch somePoint {
+        case (0, 0):
+            return "\(somePoint) is at the origin"
+        case (_, 0):
+            return "\(somePoint) is on the x-axis"
+        case (0, _):
+            return "\(somePoint) is on the y-axis"
+        case (-2...2, -2...2):
+            return "\(somePoint) is inside the box"
+        default:
+            return "\(somePoint) is outside of the box"
+        }
+    }
+
+    func getCellType(type :Int) -> String {
+
+        switch type {
+        case 1:
+            return "text"
+        case 2:
+            return "image"
+        case 7,8:
+            return "bigImage"
+        case 300...318:
+            return "community"
+        default:
+            return "none"
+        }
+    }
+
+
+
+    func studyDictionary(){
+
+        /*
+         字典是一种存储多个相同类型的值的容器。每个值（value）都关联唯一的键（key），键作为字典中的这个值数据的标识符。和数组中的数据项不同，字典中的数据项并没有具体顺序。我们在需要通过标识符（键）访问数据的时候使用字典，这种方法很大程度上和我们在现实世界中使用字典查字义的方法一样。
+
+
+         */
+
+        // 创建一个空字典
+        var dictionary = [Int:String]();
+        // 赋值
+        dictionary[1] = "1"
+        print(dictionary)
+        // 改值
+        dictionary[1] = "11"
+        print(dictionary)
+
+        // 创建一个带值的字典
+        var defaultDictionary = ["key1":1,"key2":2,"key3":3,"key4":4,"key5":5,"key6":6]
+        print(defaultDictionary)
+        // 改值
+        defaultDictionary.updateValue(4, forKey: "key3")
+        print(defaultDictionary)
+        if let airportname = defaultDictionary["key3"] {
+            print("修改成功:\(airportname)")
         }else{
-            print("No glyphs found!")
-
+            print("修改失败")
         }
-        
-        // 定义一个字典
-
-        var initDic = [String:String]();
-        
-        initDic["name"] = "harerbin";
-        
-        print(initDic);
-        
-        
-        
-        var initDicOne :[Int:String] = [1:"chemingming",2:"jiangling",3:"jiangdaming"];
-        print(initDicOne[2] ?? "");
-        
-        // 更新values
-        initDicOne.updateValue("wawa", forKey: 2);
-        print(initDicOne[2] ?? "");
-        
-        initDicOne[2] = "new wawa";
-        print(initDicOne[2] ?? "");
-
-//        initDicOne.removeValue(forKey: 2);
-//        print(initDicOne[2] ?? "空值");
-        // 遍历
-        for (key,values) in initDicOne {
-            print("key :\(key)  == values \(values)");
+        // 删除某个值
+        defaultDictionary.removeValue(forKey: "key5")
+        print(defaultDictionary)
+        defaultDictionary["key6"] = nil
+        print(defaultDictionary)
+        // 遍历字典
+        for (keys,valus) in defaultDictionary {
+            print("\(keys) = \(valus)")
         }
+
+
+        //  用数组创建字典
+        let digitWords = ["one", "two", "three", "four", "five"]
+        print("keys = \(digitWords)")
+        let abcd = ["A", "B", "C", "D"]
+        print("values = \(abcd)")
+        // 创建字典 keys 是 digitWords value 是 abcd
+        let newDic =  Dictionary(uniqueKeysWithValues: zip(digitWords, abcd));
+        print("newDic = \(newDic)")
         
     }
     
-    
+
+    func studySet(){
+
+
+        /* 集合（Set）用来存储相同类型并且没有确定顺序的值。当集合元素顺序不重要时或者希望确保每个元素只出现一次时可以使用集合而不是数组。
+
+         一个类型为了存储在集合中，该类型必须是可哈希化的——也就是说，该类型必须提供一个方法来计算它的哈希值。一个哈希值是 Int 类型的，相等的对象哈希值必须相同，比如 a==b,因此必须 a.hashValue == b.hashValue。
+
+         Swift 的所有基本类型（比如 String、Int、Double 和 Bool）默认都是可哈希化的，可以作为集合的值的类型或者字典的键的类型。没有关联值的枚举成员值（在 枚举 有讲述）默认也是可哈希化的。
+         */
+        print("=================Set=====================")
+
+
+        // 创建一个空的结合
+        var letters = Set<Character>()
+        print("letter is of type Set \(letters.count)")
+        // 是否为空
+        if letters.isEmpty{
+            print("letters is empty")
+        }else{
+            print("letters is not empty")
+        }
+        // 插入
+        letters.insert("x")
+        letters.insert("c")
+        print(letters)
+        // 删除
+        letters.remove("c")
+        print(letters)
+        // 包含
+        if letters.contains("x"){
+
+        }
+        // 遍历
+        for c in letters{
+            print("\(c)")
+        }
+        // 集合操作 见图 set.png
+        let oddDigits: Set = [1, 3, 5, 7, 9]
+        let evenDigits: Set = [0, 2, 4, 6, 8]
+        let singleDigitPrimeNumbers: Set = [2, 3, 5, 7]
+
+        // a 和 b 所有值全部加起来，建立一个新的
+        print(oddDigits.union(evenDigits).sorted())
+        // [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+        // a 和 b 两个集合里面都有的值，加起来，建立一个新的
+        print(oddDigits.intersection(evenDigits).sorted())
+        // []
+
+        // a 和 b  a有，但是b没有的值，加起来，建立一个新的 类似于 a-b
+        print(oddDigits.subtracting(singleDigitPrimeNumbers).sorted())
+        // [1, 9]
+
+        // a 和 b   a+b - (a,b 共有的值)
+        print(oddDigits.symmetricDifference(singleDigitPrimeNumbers).sorted())
+        // [1, 2, 9]
+
+        /*
+         使用“是否相等”运算符（==）来判断两个集合是否包含全部相同的值。
+         使用 isSubset(of:) 方法来判断一个集合中的值是否也被包含在另外一个集合中。
+         使用 isSuperset(of:) 方法来判断一个集合中包含另一个集合中所有的值。
+         使用 isStrictSubset(of:) 或者 isStrictSuperset(of:) 方法来判断一个集合是否是另外一个集合的子集合或者父集合并且两个集合并不相等。
+         使用 isDisjoint(with:) 方法来判断两个集合是否不含有相同的值（是否没有交集）。
+         */
+
+        let houseAnimals: Set = ["🐶", "🐱"]
+        let farmAnimals: Set = ["🐮", "🐔", "🐑", "🐶", "🐱"]
+        let cityAnimals: Set = ["🐦", "🐭"]
+
+        var result : Bool;
+
+        result = houseAnimals.isSubset(of: farmAnimals)
+        // true
+
+        result = farmAnimals.isSuperset(of: houseAnimals)
+        // true
+
+        result = farmAnimals.isDisjoint(with: cityAnimals)
+        // true
+
+        print(result)
+
+    }
     
     func studyArray(){
+        // 集合类型，swift提供 Arrays Sets Dictionaries swift中存储的数据值类型必须明确。意思我们完全可以对取出的值放心
+
+        // 定义为 let 则为不可变数组 定义为 var 则为可变数组
+        var tmpArrar = Array<String>(arrayLiteral: "1","2");
+        // 如果定义为let 则append会提示编译报错
+        tmpArrar.append("3");
+        print(tmpArrar);
+
+
         // 创建一个数组
-        var channelId = Array<String>(arrayLiteral: "20","30");
+        print("============= Array =============== ")
+        var emptyArray = [Int]();
+        emptyArray.append(4);
+
+        // 创建一个带有默认值的数组
+        let  threeDoubles = Array(repeating: 33, count: 3)
+        print("threeDoubles == \(threeDoubles)"); // [33,33,33]
+
+        let sixDoubles = Array(repeating: 66, count: 6)
+        let sumDoubles = threeDoubles + sixDoubles;
+        print("sumDoubles 这个是真厉害 threeDoubles + sixDoubles == \(sumDoubles)")
+        // 33,33,33,66,66,66,66,66,66
+
+
+        // 简便方法创建数组
+        var smpleArray = ["a","b"]
+        smpleArray.append("c")// 自动识别是string类型的数组
+        smpleArray += ["d"] // swift为何如此之diao
+        //smpleArray.append(4) // 你这样写，他就报错了，厉害
+
+
+
+        // 取值
+//        let getArray1 : Int = smpleArray[0] // 你这么写，也会报错，厉害吧，这就是类型安全，NB
+//        print(getArray1);
+
+
+//        let getvalues = smpleArray[8] // 试试崩溃吗 还是崩了，看来Swift不完美啊
+//        print(getvalues)
+
+        let value = smpleArray[0]
+        print("value == ",value)
+
+        // 改值
+        print("before smpleArray =",smpleArray)
+        smpleArray[0] = "7"
+        print("After smpleArray =",smpleArray)
+
+        // 增值
+        smpleArray.insert("sss", at: 4)
+        print("...之后 smpleArray =",smpleArray)
+
+
+        // 遍历数组
+        let channelId = Array<String>(arrayLiteral: "20","30");
         for item in channelId {
             print(item);
         }
-        
-        // 添加一个数组 X 遍
-//        channelId = Array(repeating: "item", count: 10);
-//        for item in channelId {
-//            print(item);
-//        }
-//
+
+        // 遍历数组 + index
+        for (index ,item) in channelId.enumerated() {
+            print(" 第 \(index)个为:\(item)");
+        }
+
         
         // 声明一个 数组 ，item类型为String
-        // var someStr = [String]();
+        var someStr = [String]();
+
         
         // 声明一个 数组 ，item类型为Int
         var somes = [Int]();
@@ -542,43 +913,15 @@ class MZBaseTypeController: UIViewController {
             }
         }
        
-        let  index =  somes.index(of: 100);
-        print(index);
+
         
-        
-        
-        var intTypeArr = [Int]();
-        intTypeArr.append(10);
-        intTypeArr.append(500);
-        
-        
-        
-        
-        intTypeArr += [60];
-        
-        print(intTypeArr[2]);
-        
-        // 遍历数组
-        for item in intTypeArr {
-            
-            print(item);
-        }
-        
-        
-        for (index ,item) in intTypeArr.enumerated() {
-            
-            print(" 第 \(index)个为:\(item)");
-        }
-        
-        // add Arr
-        var intsA = [Int](repeating: 2, count:2)
-        var intsB = [Int](repeating: 1, count:3)
-        var intsC = [Int](repeating: 3, count:10);
-        
+
+        // 数组+数组
+        let intsA = [Int](repeating: 2, count:2)
+        let intsB = [Int](repeating: 1, count:3)
+        var   intsC = [Int](repeating: 3, count:10);
         intsC = intsA + intsB + intsC;
         print(intsC);
-        
-//        intsC.count;
         
         
     }
@@ -608,7 +951,7 @@ class MZBaseTypeController: UIViewController {
         print(str);
         
         //字符串插入值
-        var version = "3.4.2";
+        let version = "3.4.2";
         print("Current Version is \(version )");
         
         let a = 4;
@@ -618,16 +961,16 @@ class MZBaseTypeController: UIViewController {
         
         // 字符串拼接
         var strName = "stringA  2018-09-2";
-        var strB = " strinb";
+        let strB = " strinb";
 //        strName.append(strB);
         strName = strName + strB;
         print(strName);
-        var c :  Character = "x";
+        let c :  Character = "x";
         strName.append(c);
         print(strName);
         
         // 字符串长度
-        print(strName.characters.count);
+        print(strName.count);
         
         //
         let  isHttp =  strName.hasPrefix("http");
@@ -641,7 +984,8 @@ class MZBaseTypeController: UIViewController {
         let intStr = "23412";
         let intX =  Int(intStr);
         print(intStr);
-        
+        print(intX);
+
         
         // 遍历字符串，获取每个字符
         print("遍历字符串，获取每个字符")
@@ -652,7 +996,7 @@ class MZBaseTypeController: UIViewController {
 
         // 多行字符串
         let x = 19;
-        let someString = """
+        let someString : String = """
         这里的内容“”“/1345!##@$#@%$@%@##@$$#都是字符串
         aldksjhf ;
         345
@@ -666,6 +1010,8 @@ class MZBaseTypeController: UIViewController {
         \' 单引号
         \(x)
         """
+
+        print(someString)
 
 
         // 单个字符
@@ -689,7 +1035,7 @@ class MZBaseTypeController: UIViewController {
         let validUTF8: [CChar] = [67, 97, 102, -61, -87, 0]
         validUTF8.withUnsafeBufferPointer { ptr in
              let s = String(validatingUTF8: ptr.baseAddress!)
-             print(s)
+            print(s ?? "defalue")
         }
 
         // 可扩展的字形集
@@ -717,7 +1063,68 @@ class MZBaseTypeController: UIViewController {
         word.remove(at: word.index(before: word.endIndex));
         print("after remove :\(word)"); // caféconten
 
-        
+        // 子字符串
+        let greeting = "Hello,Hello, world!"
+        let substring = greeting.firstIndex(of: ",") ?? greeting.endIndex
+
+        //SubString 不适合长期存储 —— 因为它重用了原 String 的内存空间，原 String 的内存空间必须保留直到它的 SubString 不再被使用为止
+        print(substring);
+
+        // 比较字符串 字符串字符相等、前缀相等、后缀相等
+        var community1 = "JRPictureFeed"
+        var community2 = "JRPictureFeed"
+
+        if community1 == community2{
+            print("\(community1) == \(community2)");
+        }
+
+        // 一样相等
+        community1 = "caf\u{E9}?"
+        community2 = "caf\u{65}\u{301}?"
+        if community1 == community2 {
+            print("\(community1) == \(community2)");
+        }else{
+            print("\(community1) != \(community2)");
+        }
+
+
+        let varArr = [
+            "JRPictureFeed",
+            "CommunityAnswerDetail",
+            "JRTextFeed",
+            "JRQuestionFeed",
+            "CommunityPictureDetail",
+            "CommunityCommentDetail",
+            "CommunityMoreDetail",
+            "JRBaoXianFeed",
+            "CommunityFundFeed",
+            "JRMoreDetail",
+        ]
+
+        // hasPrefix  hasSuffix 方法都是在每个字符串中逐字符比较其可扩展的字符群集是否标准相等
+        // 前缀
+        for scence in varArr {
+            if scence.hasPrefix("JR"){
+                print(scence)
+            }
+        }
+        print("========================")
+        // 后缀
+        for scence in varArr {
+            if scence.hasSuffix("Feed"){
+                print(scence)
+            }
+        }
+
+        print("==========codeUnit==============")
+        //
+        let dogString = " 车明明  Dog!🐶 "
+        for codeUnit in dogString.utf8 {
+            print("\(codeUnit)")
+            // terminator 连续打印不换行的意思
+            // print("\(codeUnit)",terminator:"")
+        }
+
     }
     
     

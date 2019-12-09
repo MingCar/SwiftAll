@@ -35,7 +35,7 @@ class MZUIViewController: MZBaseViewController ,UITextFieldDelegate {
         lbContent.backgroundColor = UIColor.green;
         lbContent.textColor = UIColor.orange;
         if #available(iOS 8.2, *) {
-            lbContent.font = UIFont.systemFont(ofSize: 15, weight: UIFontWeightBold)
+            lbContent.font = UIFont.systemFont(ofSize: 15, weight: UIFont.Weight.bold)
         } else {
             // Fallback on earlier versions
             lbContent.font = UIFont.boldSystemFont(ofSize: 14);
@@ -55,7 +55,7 @@ class MZUIViewController: MZBaseViewController ,UITextFieldDelegate {
         self.view.addSubview(button);
     }
 
-    func buttonAction(button:UIButton) {
+    @objc func buttonAction(button:UIButton) {
         button.setTitle("已点击", for: .normal)
         print("点击button");
     }
@@ -69,7 +69,7 @@ class MZUIViewController: MZBaseViewController ,UITextFieldDelegate {
         self.view.addSubview(slider);
     }
 
-    func sliderValueChanged(slider:UISlider) {
+    @objc func sliderValueChanged(slider:UISlider) {
         print("slider == \(slider.value)");
     }
 
@@ -83,7 +83,7 @@ class MZUIViewController: MZBaseViewController ,UITextFieldDelegate {
         self.view.addGestureRecognizer(tap);
     }
 
-    func tapViewAction (){
+    @objc func tapViewAction (){
 
         if self.textfield.isFirstResponder {
             self.textfield.resignFirstResponder();

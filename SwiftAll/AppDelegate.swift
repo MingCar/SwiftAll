@@ -21,8 +21,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.window = UIWindow(frame: UIScreen.main.bounds);
         self.window!.makeKeyAndVisible()
-        let vc : MZRootViewController = MZRootViewController()
-        let nv : UINavigationController = UINavigationController(rootViewController: vc)
+//        let vc : MZRootViewController = MZRootViewController()
+        let type = MZBaseTypeController()
+        let nv : UINavigationController = UINavigationController(rootViewController: type)
         self.window?.rootViewController = nv;
         return true
     }

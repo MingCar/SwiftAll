@@ -41,7 +41,7 @@ class MZRootViewController: UIViewController,UITableViewDelegate,UITableViewData
     }
 
     
-    func clickAction() {
+    @objc func clickAction() {
         
         self.demoList.reloadData()
     }
