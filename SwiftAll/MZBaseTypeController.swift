@@ -32,7 +32,9 @@ import UIKit
 enum enumName{
     case Monday
     case Tuesday
-    
+    case Wensday
+    case Friday
+
 }
 
 enum Compasspoint {
@@ -51,6 +53,10 @@ enum Barcode {
 enum ASCIIControlCharacter: Character {
     case tab = "\t"
     case linFeed = "\n"
+}
+
+enum Planet: Int {
+    case mercury = 1, venus, earth, mars, jupiter, saturn, uranus, neptune
 }
 
 struct studentMarks {
@@ -75,7 +81,7 @@ class MZBaseTypeController: UIViewController {
         
         self.priseLabel();
 
-        
+
 //        self.studyDateType();
 //        self.studyVar();
 //        self.studyOptionalType();
@@ -86,19 +92,20 @@ class MZBaseTypeController: UIViewController {
 //        self.studySet()
 //        self.studyDictionary();
 //        self.studyFor();
-        self.studyFunc();
+//        self.studyFunc();
 //        self.studyClosures();
 //        self.studyEnum();
 //        self.studyStruct();
-//        self.studyClass();
+        self.studyClass();
 
     }
 
     func studyClass() {
 
         // 属性
-        /**
-         属性
+         /**
+         属性属性将值与特定的类、结构体或枚举关联。存储属性会将常量和变量存储为实例的一部分，而计算属性则是直接计算（而不是存储）值。计算属性可以用于类、结构体和枚举，而存储属性只能用于类和结构体。
+         存储属性和计算属性通常与特定类型的实例关联。但是，属性也可以直接与类型本身关联，这种属性称为类型属性。         另外，还可以定义属性观察器来监控属性值的变化，以此来触发自定义的操作。属性观察器可以添加到类本身定义的存储属性上，也可以添加到从父类继承的属性上。
          */
 
 
@@ -202,6 +209,7 @@ class MZBaseTypeController: UIViewController {
 
     // 学习枚举
     func studyEnum (){
+
         // Swift 在创建时不会被赋予一个默认的整形值。每一个枚举都定义了一个全新的类型，有点类似于 类
         var weekDay = enumName.Monday;
         print(weekDay);
@@ -226,14 +234,40 @@ class MZBaseTypeController: UIViewController {
         }
         // 关联值
         // 只能存储这两个值中的一个
-        var productBarcode =  Barcode.uqc(4, 4, 4);
-//        productBarcode = Barcode.qrCode("AOUHLSKDFH");
-        print(productBarcode);
+        var productBarcode = Barcode.uqc(8, 834484, 6878)
+        productBarcode = .qrCode("ABCDEFGHIJKLMNOP")
 
-        // 原始值
-        print(" \(ASCIIControlCharacter.tab) + \(ASCIIControlCharacter.linFeed)");
+        print("productBarcode == \(productBarcode)")
+        
+        // 原始值 原始值可以是字符串、字符，或者任意整型值或浮点型值。每个原始值在枚举声明中必须是唯一的。
+        print("\(ASCIIControlCharacter.tab) + \(ASCIIControlCharacter.linFeed)");
+        // 原始值的隐式赋值
 
-        // 递归枚举？？
+        var ppp =  Planet.earth;
+        print("ppp  =\(ppp)")
+        ppp = Planet.mars;
+        print("new ppp  =\(ppp)")
+
+        _ = Planet(rawValue: 9)
+        ppp = Planet.uranus;
+        print("rawValue ppp  =\(ppp)")
+
+
+
+    //递归枚举？？递归枚举是一种枚举类型，它有一个或多个枚举成员使用该枚举类型的实例作为关联值。使用递归枚举时，编译器会插入一个间接层。你可以在枚举成员前加上 indirect 来表示该成员可递归。
+        // 你也可以在枚举类型开头加上 indirect 关键字来表明它的所有成员都是可递归的：
+        indirect enum ArithmeticExpression {
+            case number(Int)
+            case addition(ArithmeticExpression, ArithmeticExpression)
+            case multiplication(ArithmeticExpression, ArithmeticExpression)
+        }
+
+
+        let five = ArithmeticExpression.number(5)
+        let four = ArithmeticExpression.number(4)
+        let sum = ArithmeticExpression.addition(five, four)
+        let product = ArithmeticExpression.multiplication(sum, ArithmeticExpression.number(2))
+        print(product)
 
 
 
@@ -241,7 +275,256 @@ class MZBaseTypeController: UIViewController {
     
     
     func studyClosures () {
-        
+
+        /*
+         闭包是自包含的函数代码块，可以在代码中被传递和使用。Swift 中的闭包与 C 和 Objective-C 中的代码块（blocks）以及其他一些编程语言中的匿名函数（Lambdas）比较相似。
+
+         闭包可以捕获和存储其所在上下文中任意常量和变量的引用。被称为包裹常量和变量。 Swift 会为你管理在捕获过程中涉及到的所有内存操作。
+
+         注意
+
+         如果你不熟悉捕获（capturing）这个概念也不用担心，在 值捕获 章节有它更详细的介绍。
+
+         在 函数 章节中介绍的全局和嵌套函数实际上也是特殊的闭包，闭包采用如下三种形式之一：
+
+         全局函数是一个有名字但不会捕获任何值的闭包
+         嵌套函数是一个有名字并可以捕获其封闭函数域内值的闭包
+         闭包表达式是一个利用轻量级语法所写的可以捕获其上下文中变量或常量值的匿名闭包
+         Swift 的闭包表达式拥有简洁的风格，并鼓励在常见场景中进行语法优化，主要优化如下：
+
+         1、利用上下文推断参数和返回值类型
+         2、隐式返回单表达式闭包，即单表达式闭包可以省略 return 关键字
+         3、参数名称缩写
+         4、尾随闭包语法
+
+
+         */
+
+
+        /// 排序方法
+        func backward (_ s1:String, _ s2:String)->Bool{
+            /// 从大到小
+//            return s1 > s2;
+            /// 从小到大
+            return s1 < s2;
+        }
+        let names = ["name4","name8","name3","name2"]
+        var newNames =  names.sorted(by: backward(_:_:));
+        print("names ==\(names) newNames ==\(newNames)")
+
+
+        /// 上述代码使用Closures 来实现
+        newNames = names.sorted(by: { (s1, s2) -> Bool in
+            return s1 < s2;
+        })
+        print("user Closures names ==\(names) newNames ==\(newNames)")
+
+        // 单表达式闭包的隐式返回 省略 return
+        newNames = names.sorted(by: {s1,s2 in s1 > s2});
+        print("user Closures without return key names ==\(names) newNames ==\(newNames)")
+
+
+        // 参数名称也可以缩写 直接通过 $0，$1，$2 来顺序调用闭包的参数，以此类推
+        newNames = names.sorted(by: {$0 > $1});
+        print("user Closures with $ key names ==\(names) newNames ==\(newNames)")
+
+        // 还可以更简短 运用运算符
+        newNames = names.sorted(by: >);
+        print("user Closures with > || <  key names ==\(names) newNames ==\(newNames)")
+
+        /// block作为函数参数传递
+        func someFunctionThatTakesClosure( closure:() -> Void){
+            // 函数体部分
+            print("strat")
+            closure()
+            closure()
+            print("end")
+
+        }
+
+        // 调用方法 someFunctionThatTakesClosure 并实现block
+        someFunctionThatTakesClosure {
+            print("xxx")
+        }
+        someFunctionThatTakesClosure( closure: {
+            print("===")
+        })
+
+
+        // 闭包表达式
+        let dictNames = [
+            0: "Zero", 1: "One", 2: "Two",   3: "Three", 4: "Four",
+            5: "Five", 6: "Six", 7: "Seven", 8: "Eight", 9: "Nine"
+        ]
+        let numbers = [16, 58, 510]
+        let result = numbers.map {
+            (number) -> String in
+            var number = number
+            var outPut = ""
+            repeat{
+                let tmp1 =  number % 10
+                let tmp2 = dictNames[tmp1];
+                outPut = tmp2! + outPut
+                number /= 10
+            }while number > 0
+            return outPut
+        }
+        print("result ==\(result)")
+
+
+        // 值捕获 闭包带值
+        /*
+         makeIncrementer 方法返回类型 是 () ->Int 意思是返回一个函数，而不是一个简单的值
+         incrementer 这个嵌套函数  函数并没有任何参数，但是在函数体内访问了 runningTotal 和 amount 变量。这是因为它从外围函数捕获了 runningTotal 和 amount 变量的引用。捕获引用保证了 runningTotal 和 amount 变量在调用完 makeIncrementer 后不会消失，并且保证了在下一次执行 incrementer 函数时，runningTotal 依旧存在
+
+         注意：为了优化，如果一个值不会被闭包改变，或者在闭包创建后不会改变，Swift 可能会改为捕获并保存一份对值的拷贝。
+         Swift 也会负责被捕获变量的所有内存管理工作，包括释放不再需要的变量。
+
+         */
+        func makeIncrementer(forIncrement amount:Int) -> () ->Int{
+
+            var runningTotal = 5;
+            func incrementer() -> Int{
+                runningTotal += amount;
+                print("runningTotal ==\(runningTotal) amount=\(amount)")
+                return runningTotal
+            }
+            print("runningTotal ==\(runningTotal)")
+            return incrementer
+        }
+
+        var funcTypeResult =  makeIncrementer(forIncrement: 5)
+        var incrementerResult =  funcTypeResult()
+        print("incrementerResult == \(incrementerResult)") // 10
+        incrementerResult = funcTypeResult()
+        print("incrementerResult == \(incrementerResult)") // 15
+        incrementerResult = funcTypeResult()
+        print("incrementerResult == \(incrementerResult)") // 20
+
+
+
+        funcTypeResult =  makeIncrementer(forIncrement: 10)
+        incrementerResult = funcTypeResult()
+        print("incrementerResult == \(incrementerResult)") // 15
+        incrementerResult = funcTypeResult()
+        print("incrementerResult == \(incrementerResult)") // 25
+
+
+        // 逃逸闭包
+        /*
+    当一个闭包作为参数传到一个函数中，但是这个闭包在函数返回之后才被执行，我们称该闭包从函数中逃逸。当你定义接受闭包作为参数的函数时，你可以在参数名之前标注 @escaping，用来指明这个闭包是允许“逃逸”出这个函数的。
+        一种能使闭包“逃逸”出函数的方法是，将这个闭包保存在一个函数外部定义的变量中。举个例子，很多启动异步操作的函数接受一个闭包参数作为 completion handler。这类函数会在异步操作开始之后立刻返回，但是闭包直到异步操作结束后才会被调用。在这种情况下，闭包需要“逃逸”出函数，因为闭包需要在函数返回之后被调用。例如
+
+         */
+
+//        var completionHandlers: [() -> Void] = []
+//        func someFunctionWithEscapingClosure(completionHandler: @escaping () -> Void) {
+//            completionHandlers.append(completionHandler)
+//        }
+        //  someFunctionWithEscapingClosure 这个函数接收一个闭包作为参数someFunctionWithEscapingClosure(_:) 函数接受一个闭包作为参数，该闭包被添加到一个函数外定义的数组中。如果你不将这个参数标记为 @escaping，就会得到一个编译错误。
+       //   将一个闭包标记为 @escaping 意味着你必须在闭包中显式地引用 self。比如说，在下面的代码中，传递到 someFunctionWithEscapingClosure(_:) 中的闭包是一个逃逸闭包，这意味着它需要显式地引用 self。相对的，传递到 someFunctionWithNonescapingClosure(_:) 中的闭包是一个非逃逸闭包，这意味着它可以隐式引用 self。
+
+
+        var completionHandlers: [() -> Void] = []
+        func someFunctionWithEscapingClosure(completionHandler: @escaping () -> Void) {
+            completionHandlers.append(completionHandler)
+        }
+
+        class SomeClass {
+            var x = 10
+
+
+            func someFunctionWithNonescapingClosure(closure: () -> Void) {
+                closure()
+            }
+
+            func doSomething() {
+
+//                someFunctionWithEscapingClosure {
+//                    x = 100
+//                }
+
+                someFunctionWithNonescapingClosure {
+                    self.x = 200;
+                }
+            }
+        }
+
+        let instance = SomeClass()
+        instance.doSomething()
+        print(instance.x)
+        // 打印出“200”
+
+        completionHandlers.first?()
+        print(instance.x)
+        // 打印出“100”
+
+
+
+        /*
+    自动闭包是一种自动创建的闭包，用于包装传递给函数作为参数的表达式。这种闭包不接受任何参数，当它被调用的时候，会返回被包装在其中的表达式的值。这种便利语法让你能够省略闭包的花括号，用一个普通的表达式来代替显式的闭包。
+
+        我们经常会调用采用自动闭包的函数，但是很少去实现这样的函数。举个例子来说，assert(condition:message:file:line:) 函数接受自动闭包作为它的 condition 参数和 message 参数；它的 condition 参数仅会在 debug 模式下被求值，它的 message 参数仅当 condition 参数为 false 时被计算求值。
+
+        自动闭包让你能够延迟求值，因为直到你调用这个闭包，代码段才会被执行。延迟求值对于那些有副作用（Side Effect）和高计算成本的代码来说是很有益处的，因为它使得你能控制代码的执行时机。下面的代码展示了闭包如何延时求值。
+         */
+
+        var customersInLine = ["Chris", "Alex", "Ewa", "Barry", "Daniella"]
+        print(customersInLine.count)
+        // 打印出“5”
+
+        let customerProvider = { customersInLine.remove(at: 0) }
+        print(customersInLine.count)
+        // 打印出“5”
+
+        print("Now serving \(customerProvider())!")
+        // Prints "Now serving Chris!"
+        print(customersInLine.count)
+
+
+        //尽管在闭包的代码中，customersInLine 的第一个元素被移除了，不过在闭包被调用之前，这个元素是不会被移除的。如果这个闭包永远不被调用，那么在闭包里面的表达式将永远不会执行，那意味着列表中的元素永远不会被移除。请注意，customerProvider 的类型不是 String，而是 () -> String，一个没有参数且返回值为 String 的函数。将闭包作为参数传递给函数时，你能获得同样的延时求值行为。
+
+        // customersInLine is ["Alex", "Ewa", "Barry", "Daniella"]
+//        func serve(customer customerProvider: () -> String) {
+//            print("Now serving \(customerProvider())!")
+//        }
+//        serve(customer: { customersInLine.remove(at: 0) } )
+        // 打印出“Now serving Alex!”
+
+
+        // 上面的 serve(customer:) 函数接受一个返回顾客名字的显式的闭包。下面这个版本的 serve(customer:) 完成了相同的操作，不过它并没有接受一个显式的闭包，而是通过将参数标记为 @autoclosure 来接收一个自动闭包。现在你可以将该函数当作接受 String 类型参数（而非闭包）的函数来调用。customerProvider 参数将自动转化为一个闭包，因为该参数被标记了 @autoclosure 特性。
+
+        // customersInLine is ["Ewa", "Barry", "Daniella"]
+        func serve(customer customerProvider: @autoclosure () -> String) {
+            print("Now serving \(customerProvider())!")
+        }
+        serve(customer: customersInLine.remove(at: 0))
+        // 打印“Now serving Ewa!”
+
+        //注意
+        //过度使用 autoclosures 会让你的代码变得难以理解。上下文和函数名应该能够清晰地表明求值是被延迟执行的。
+
+        //如果你想让一个自动闭包可以“逃逸”，则应该同时使用 @autoclosure 和 @escaping 属性。@escaping 属性的讲解见上面的 逃逸闭包。
+
+        var customerProviders: [() -> String] = []
+        func collectCustomerProviders(_ customerProvider: @autoclosure @escaping () -> String) {
+            customerProviders.append(customerProvider)
+        }
+        collectCustomerProviders(customersInLine.remove(at: 0))
+        collectCustomerProviders(customersInLine.remove(at: 0))
+
+        print("Collected \(customerProviders.count) closures.")
+        // 打印“Collected 2 closures.”˚
+        for customerProvider in customerProviders {
+            print("Now serving \(customerProvider())!")
+        }
+        // 打印“Now serving Barry!”
+        // 打印“Now serving Daniella!”
+
+        //在上面的代码中，collectCustomerProviders(_:) 函数并没有调用传入的 customerProvider 闭包，而是将闭包追加到了 customerProviders 数组中。这个数组定义在函数作用域范围外，这意味着数组内的闭包能够在函数返回之后被调用。因此，customerProvider 参数必须允许“逃逸”出函数作用域。
+
+
+        /*
         // 定义闭包
         let studname = {print("swift closures")};
         // 执行闭包
@@ -323,7 +606,7 @@ class MZBaseTypeController: UIViewController {
         somfuncWithClosure(){
             print("?????");
         };
-        
+        */
        
     }
     
@@ -405,8 +688,6 @@ class MZBaseTypeController: UIViewController {
         print("the var type is function ,how amazing ,right ? let me show you that \(addtion(40,90))");
         
         //函数类型作为参数类型、函数类型作为返回类型
-        
-    
         func sum(a: Int, b: Int) -> Int {
             return a + b
         }
